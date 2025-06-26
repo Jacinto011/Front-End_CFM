@@ -1,0 +1,57 @@
+/* ProjectTables.module.css */
+
+.customCard {
+    background-color: #f8f9fa;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .title {
+    color: #007bff;
+    font-weight: bold;
+  }
+  
+  .subtitle {
+    font-style: italic;
+  }
+  
+  .input {
+    border-radius: 8px;
+    padding: 10px;
+  }
+  
+  .table {
+    background-color: white;
+    border-radius: 12px;
+  }
+  
+  .row:hover {
+    background-color: #f1f3f5;
+    transition: background-color 0.3s;
+  }
+  
+  .statusSuccess {
+    background-color: #28a745;
+  }
+  
+  .statusDanger {
+    background-color: #dc3545;
+  }
+  
+  @media (max-width: 768px) {
+    .hide-on-small {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .table th:nth-child(2),
+      .table th:nth-child(3),
+      .table td:nth-child(2),
+      .table td:nth-child(3) {
+        display: none;
+      }
+    }
+    
+  }
+  
