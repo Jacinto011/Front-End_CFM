@@ -365,7 +365,7 @@ export default function GerenciarSupervisores() {
         </table>
       )}
 
-      <button className="btn btn-secondary mt-3" onClick={() => router.push('/admin/dashbord')}>
+      <button className="btn btn-secondary mt-3" onClick={() => router.push('/')}>
         Voltar ao Dashboard
       </button>
     </div>

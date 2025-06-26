@@ -4,17 +4,19 @@ import feather from "feather-icons";
 
 const sidebarLinks = {
   estagiario: [
+    { label: 'Dashboard', href: '/', icon: 'home' },
     { label: 'Ver Vagas', href: '/vaga', icon: 'briefcase' },
     { label: 'Minhas Candidaturas', href: '/vaga/minhas-candidaturas', icon: 'clipboard' },
     { label: 'Relatorios de Estagios', href: '/estagiario/relatorios', icon: 'clipboard' },
     { label: 'Avaliação do Supervisor', href: '/estagiario/avaliacoes', icon: 'star' },
   ],
   supervisor: [
+    { label: 'Dashboard', href: '/', icon: 'home' },
     { label: 'Avaliar Estagiários', href: '/supervisor/avaliacoes', icon: 'edit' },
     { label: 'Ver Relatórios', href: '/supervisor/relatorios', icon: 'bar-chart-2' },
   ],
   admin: [
-    { label: 'Dashboard', href: '/admin/dashbord', icon: 'home' },
+    { label: 'Dashboard', href: '/', icon: 'home' },
     { label: 'Gerir Usuários', href: '/usuarios', icon: 'users' },
     { label: 'Gerir Vagas', href: '/admin/gerenciar-vagas', icon: 'file-plus' },
     { label: 'Gerir Supervisores', href: '/admin/gerenciar-supervisores', icon: 'book' },

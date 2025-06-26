@@ -155,7 +155,7 @@ export default function GerenciarEstagiarios() {
       <h2 className="mb-4">Gerenciar Estagiários</h2>
 
       <div className="mb-3">
-        <Link href="/admin/dashbord" className="btn btn-secondary">← Voltar ao Dashboard</Link>
+        <Link href="/" className="btn btn-secondary">← Voltar ao Dashboard</Link>
       </div>
 
       <div className="card p-4 shadow-sm">

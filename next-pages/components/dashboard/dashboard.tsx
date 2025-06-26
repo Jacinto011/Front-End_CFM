@@ -3,6 +3,7 @@ import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, PieChart, Pie, Cell, Resp
 import { useUserContext } from "@/context/UserContext";
 import Link from "next/link";
 import Image from "next/image";
+import AdminDashbord from "../admin/dashbord";
 
 // Dados de exemplo para as vagas
 const vagasData = [
@@ -77,7 +78,7 @@ export default function Dashboard() {
           </div>
           <div className="col-md-4 text-end">
             <Image 
-              src="/cfm-logo.png" 
+              src="/img/photos/cfm0.png" 
               alt="CFM Logo" 
               width={150} 
               height={80} 
@@ -236,7 +237,7 @@ export default function Dashboard() {
           </div>
           <div className="col-md-4 text-end">
             <Image 
-              src="/cfm-logo.png" 
+              src="/img/photos/cfm0.png" 
               alt="CFM Logo" 
               width={150} 
               height={80} 
@@ -386,7 +387,7 @@ export default function Dashboard() {
           </div>
           <div className="col-md-4 text-end">
             <Image 
-              src="/cfm-logo.png" 
+              src="/img/photos/cfm0.png" 
               alt="CFM Logo" 
               width={150} 
               height={80} 
@@ -396,6 +397,40 @@ export default function Dashboard() {
         </div>
 
         <div className="card shadow mb-4">
+                  <div className="row">
+          <div className="">
+            <div className="card shadow">
+              <div className="card-header bg-light">
+                <h2 className="h4 mb-0">Estatísticas do Sistema</h2>
+              </div>
+              <div className="card-body">
+                <ul className="list-group list-group-flush">
+                  <li className="list-group-item d-flex justify-content-between align-items-center">
+                    Total de Usuários
+                    <span className="badge bg-primary rounded-pill">42</span>
+                  </li>
+                  <li className="list-group-item d-flex justify-content-between align-items-center">
+                    Supervisores Ativos
+                    <span className="badge bg-success rounded-pill">15</span>
+                  </li>
+                  <li className="list-group-item d-flex justify-content-between align-items-center">
+                    Estagiários Ativos
+                    <span className="badge bg-info rounded-pill">24</span>
+                  </li>
+                  <li className="list-group-item d-flex justify-content-between align-items-center">
+                    Vagas Abertas
+                    <span className="badge bg-warning rounded-pill">8</span>
+                  </li>
+                  <li className="list-group-item d-flex justify-content-between align-items-center">
+                    Candidaturas Este Mês
+                    <span className="badge bg-danger rounded-pill">56</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        
+        </div>
           <div className="card-header bg-light">
             <h2 className="h4 mb-0">Usuários do Sistema</h2>
           </div>
@@ -440,71 +475,7 @@ export default function Dashboard() {
             </div>
           </div>
         </div>
-
-        <div className="row">
-          <div className="col-md-6">
-            <div className="card shadow mb-4">
-              <div className="card-header bg-light">
-                <h2 className="h4 mb-0">Configurações do Sistema</h2>
-              </div>
-              <div className="card-body">
-                <form>
-                  <div className="mb-3">
-                    <label className="form-label">Período de Inscrições</label>
-                    <div className="row">
-                      <div className="col">
-                        <input type="date" className="form-control" placeholder="Data Início" />
-                      </div>
-                      <div className="col">
-                        <input type="date" className="form-control" placeholder="Data Fim" />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mb-3">
-                    <label className="form-label">Duração do Estágio (meses)</label>
-                    <input type="number" className="form-control" defaultValue="6" />
-                  </div>
-                  <div className="mb-3">
-                    <label className="form-label">Nota Mínima para Aprovação</label>
-                    <input type="number" className="form-control" defaultValue="7.0" step="0.1" />
-                  </div>
-                  <button type="submit" className="btn btn-primary">Salvar Configurações</button>
-                </form>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-6">
-            <div className="card shadow">
-              <div className="card-header bg-light">
-                <h2 className="h4 mb-0">Estatísticas do Sistema</h2>
-              </div>
-              <div className="card-body">
-                <ul className="list-group list-group-flush">
-                  <li className="list-group-item d-flex justify-content-between align-items-center">
-                    Total de Usuários
-                    <span className="badge bg-primary rounded-pill">42</span>
-                  </li>
-                  <li className="list-group-item d-flex justify-content-between align-items-center">
-                    Supervisores Ativos
-                    <span className="badge bg-success rounded-pill">15</span>
-                  </li>
-                  <li className="list-group-item d-flex justify-content-between align-items-center">
-                    Estagiários Ativos
-                    <span className="badge bg-info rounded-pill">24</span>
-                  </li>
-                  <li className="list-group-item d-flex justify-content-between align-items-center">
-                    Vagas Abertas
-                    <span className="badge bg-warning rounded-pill">8</span>
-                  </li>
-                  <li className="list-group-item d-flex justify-content-between align-items-center">
-                    Candidaturas Este Mês
-                    <span className="badge bg-danger rounded-pill">56</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
+        <AdminDashbord/>
       </div>
     );
   }

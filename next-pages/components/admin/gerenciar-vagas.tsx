@@ -206,7 +206,7 @@ export default function GerenciarVagas() {
       <div className="d-flex justify-content-between mb-4">
         <button 
           className="btn btn-secondary" 
-          onClick={() => router.push('/admin/dashbord')}
+          onClick={() => router.push('/')}
         >
           Voltar ao Dashboard
         </button>
