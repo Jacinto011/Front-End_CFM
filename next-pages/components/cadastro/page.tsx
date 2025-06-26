@@ -380,25 +380,26 @@ const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
           </div>
 
           <div className="mb-3">
-            <label htmlFor="idCidade" className="form-label">Cidade*</label>
-            <select
-              id="idCidade"
-              className={`form-select ${errors.idCidade ? "is-invalid" : ""}`}
-              name="idCidade"
-              value={user.idCidade}
-              onChange={handleChange}
-              disabled={loadingCidades}
-            >
-              <option value={0}>Selecione sua cidade</option>
-              {cidades.map((cidade) => (
-                <option key={cidade.idCidade} value={cidade.idCidade}>
-                  {cidade.nomeCidade} - {cidade.nomeProvincia}
-                </option>
-              ))}
-            </select>
-            {errors.idCidade && <div className="invalid-feedback">{errors.idCidade}</div>}
-            {loadingCidades && <div className="form-text">Carregando cidades...</div>}
-          </div>
+  <label htmlFor="idCidade" className="form-label">Cidade*</label>
+  <select
+    id="idCidade"
+    className={`form-select ${errors.idCidade ? "is-invalid" : ""}`}
+    name="idCidade"
+    value={user.idCidade}
+    onChange={handleChange}
+    disabled={loadingCidades}
+  >
+    <option value={0}>Selecione sua cidade</option>
+    {cidades.map((cidade) => (
+      <option key={cidade.idCidade} value={cidade.idCidade}>
+        {cidade.nomeCidade} - {cidade.nomeProvincia}
+      </option>
+    ))}
+  </select>
+  {errors.idCidade && <div className="invalid-feedback">{errors.idCidade}</div>}
+  {loadingCidades && <div className="form-text">Carregando cidades...</div>}
+</div>
+
 
           <div className="mb-3">
             <label htmlFor="contato1" className="form-label">Contato Principal*</label>

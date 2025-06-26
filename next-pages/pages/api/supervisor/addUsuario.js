@@ -1,10 +1,10 @@
 const apiUrl = process.env.API_URL;
 
 export async function handleAddUser(req, res) {
-  //console.log('Dados de adicionar usuario chegaram: ', req.body);
+  console.log('Dados de adicionar usuario chegaram: ', req.body);
   
   try {
-    const response = await fetch(`${apiUrl}/users/add/User`, {
+    const response = await fetch(`${apiUrl}/supervisor/add`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

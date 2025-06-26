@@ -4,17 +4,17 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
 type Supervisor = {
-    id_usuario: number,
-    nome: string,
-    apelido: string,
-    nomeCidade: string,
-    email: string,
-    area: string
+  id_usuario: number,
+  nome: string,
+  apelido: string,
+  nomeCidade: string,
+  email: string,
+  area: string
 };
 
 interface UserDetailsProps {
   urlImage: string;
-  tb_id_usuario: number;
+  id_usuario: string;
   nome: string;
   apelido: string;
   email: string;
@@ -39,11 +39,11 @@ export default function GerenciarSupervisores() {
   const [editingSupervisor, setEditingSupervisor] = useState<Supervisor | null>(null);
   const [showEditModal, setShowEditModal] = useState(false);
   const [editArea, setEditArea] = useState('');
+  const [idUsuario, setIdUsuario] = useState(0);
   const router = useRouter();
 
   useEffect(() => {
     fetchData();
-    fetchAreas();
   }, []);
 
   const fetchData = async () => {
@@ -59,7 +59,10 @@ export default function GerenciarSupervisores() {
 
       if (!response.ok) throw new Error('Erro ao buscar dados.');
 
+
       const result = await response.json();
+      console.log(result);
+      setIdUsuario(result.id_usuario);
       setSupervisores(result);
     } catch (error) {
       console.error('Erro:', error);
@@ -69,23 +72,20 @@ export default function GerenciarSupervisores() {
     }
   };
 
-  const fetchAreas = async () => {
-    try {
-      const response = await fetch('/api/areas');
-      const data = await response.json();
-      setAreas(data);
-    } catch (error) {
-      console.error('Erro ao buscar áreas:', error);
-    }
-  };
+
 
   const fetchUser = async (id: string) => {
     try {
       const response = await fetch(`/api/usuarios?id=${id}`);
       if (!response.ok) throw new Error('Usuário não encontrado');
-      
+
       const data = await response.json();
       setUser(data);
+      setIdUsuario(data.id_usuario);
+      console.log('Supervisor: ',data.id_usuario);
+      console.log('Dados de Id de Usuario: ', user?.id_usuario);
+      
+      
     } catch (error) {
       console.error('Erro:', error);
       alert('Usuário não encontrado');
@@ -100,6 +100,8 @@ export default function GerenciarSupervisores() {
     }
 
     try {
+      console.log('Id Usuario: ',idUsuario);
+      
       const response = await fetch('/api/supervisor', {
         method: 'POST',
         headers: {
@@ -107,7 +109,7 @@ export default function GerenciarSupervisores() {
           Authorization: `Bearer `,
         },
         body: JSON.stringify({
-          tb_id_usuario: user.tb_id_usuario,
+          idUsuario: user?.id_usuario,
           area: selectedArea
         }),
       });
@@ -185,12 +187,36 @@ export default function GerenciarSupervisores() {
     }
   };
 
+  const todasAreas = [
+    "Engenharia Ferroviária",
+    "Manutenção de Locomotivas",
+    "Sinalização e Telecomunicações",
+    "Infraestruturas Portuárias",
+    "Gestão de Cargas",
+    "Recursos Humanos",
+    "Tecnologias de Informação",
+    "Planeamento e Desenvolvimento",
+    "Segurança Ferroviária",
+    "Contabilidade e Finanças",
+    "Logística e Transportes",
+    "Jurídico",
+    "Marketing e Comunicação",
+    "Ambiente e Sustentabilidade"
+  ];
+
+  // const [selectedArea, setSelectedArea] = useState("");
+  const [filtro, setFiltro] = useState("");
+
+  const areasFiltradas = todasAreas.filter(area =>
+    area.toLowerCase().includes(filtro.toLowerCase())
+  );
+
   return (
     <div className="container py-5">
       <h2 className="mb-4">Gerenciar Supervisores</h2>
 
       <div className="mb-4">
-        <button 
+        <button
           className="btn btn-primary"
           onClick={() => setShowAddModal(true)}
         >
@@ -215,8 +241,8 @@ export default function GerenciarSupervisores() {
                 onChange={(e) => setSearchId(e.target.value)}
                 placeholder="Digite o ID do usuário"
               />
-              <button 
-                className="btn btn-outline-secondary" 
+              <button
+                className="btn btn-outline-secondary"
                 type="button"
                 onClick={() => fetchUser(searchId)}
               >
@@ -235,6 +261,18 @@ export default function GerenciarSupervisores() {
               </div>
 
               <div className="mb-3">
+                <label htmlFor="filtro-area" className="form-label">Buscar Área</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="filtro-area"
+                  placeholder="Digite para filtrar"
+                  value={filtro}
+                  onChange={(e) => setFiltro(e.target.value)}
+                />
+              </div>
+
+              <div className="mb-3">
                 <label htmlFor="area" className="form-label">Área</label>
                 <select
                   className="form-select"
@@ -243,7 +281,7 @@ export default function GerenciarSupervisores() {
                   onChange={(e) => setSelectedArea(e.target.value)}
                 >
                   <option value="">Selecione uma área</option>
-                  {areas.map((area) => (
+                  {areasFiltradas.map((area) => (
                     <option key={area} value={area}>{area}</option>
                   ))}
                 </select>
@@ -260,8 +298,8 @@ export default function GerenciarSupervisores() {
           }}>
             Cancelar
           </Button>
-          <Button 
-            variant="primary" 
+          <Button
+            variant="primary"
             onClick={handleAddSupervisor}
             disabled={!selectedArea || !user}
           >
@@ -305,8 +343,8 @@ export default function GerenciarSupervisores() {
           <Button variant="secondary" onClick={() => setShowEditModal(false)}>
             Cancelar
           </Button>
-          <Button 
-            variant="primary" 
+          <Button
+            variant="primary"
             onClick={handleUpdateSupervisor}
             disabled={!editArea}
           >
@@ -346,14 +384,14 @@ export default function GerenciarSupervisores() {
                 <td>{sup.nomeCidade}</td>
                 <td>{sup.area}</td>
                 <td>
-                  <button 
-                    className="btn btn-sm btn-warning me-2" 
+                  <button
+                    className="btn btn-sm btn-warning me-2"
                     onClick={() => handleEditar(sup)}
                   >
                     Editar
                   </button>
-                  <button 
-                    className="btn btn-sm btn-danger" 
+                  <button
+                    className="btn btn-sm btn-danger"
                     onClick={() => handleExcluir(sup.id_usuario)}
                   >
                     Excluir

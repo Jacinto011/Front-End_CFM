@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Layout } from '@/layout';
 import { usuario_logado } from '@/components/lib/autenticar';
 import Dashboard from '@/components/dashboard/dashboard';
-import Vagas from '@/components/estagiario/vagas';
+//import Vagas from '@/components/estagiario/vagas';
 import GerenciarVagas from '@/components/admin/gerenciar-vagas';
 import GerenciarSupervisores from '@/components/admin/gerenciar-supervisores';
 
